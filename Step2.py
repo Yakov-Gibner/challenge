@@ -1,4 +1,5 @@
 import json
+import jsonlines
 from collections import Counter
 
 # counter of views ads (from collections)
@@ -29,8 +30,8 @@ views_dict = dict(views_counter)
 array = [{'adId': i, 'views': views_dict[i]} for i in views_dict]
 
 #save as JSON
-with open('step2.json', 'w') as f:
-    json.dump(array, f)
+with jsonlines.open('output.jsonl', mode='w') as writer:
+    writer.write(array)
 
 
 print(views_counter)
