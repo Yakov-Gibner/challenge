@@ -29,16 +29,14 @@ for json_str in json_list:
 # looking for time of views (ids of Black MERCEDES-BENZ) and write them to the list "event_time"
 for json_str in json_list_views:
     result_views = json.loads(json_str)
+    event_t = datetime.utcfromtimestamp(result_views['event']['time']).strftime('%Y-%m-%dT%H:%M:%SZ')
     if result_views['ad']['id'] in black_Merc:
-        event_time.append(result_views['ad']['id'])
-        event_time.append(datetime.utcfromtimestamp(result_views['event']['time']).strftime('%Y-%m-%dT%H:%M:%SZ'))
-        event_time.append('\n')
+        event_time.append(f"{result_views['ad']['id']}, {event_t} \n")
 
 
 # writing output of ids and time to csv-file
-with open('step1.csv', mode='w', newline='') as csv_file:
-    ads_writer = csv.writer(csv_file)
-    ads_writer.writerow(event_time)
+with open('step1.csv', mode='w') as csv_file:
+    csv_file.writelines(event_time)
 
 
 print(event_time)
