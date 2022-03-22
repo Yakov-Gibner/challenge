@@ -29,9 +29,10 @@ views_dict = dict(views_counter)
 #rename keys and values
 array = [{'adId': i, 'views': views_dict[i]} for i in views_dict]
 
+
 #save as JSON
-with jsonlines.open('output.jsonl', mode='w') as writer:
-    writer.write(array)
+with jsonlines.open('output.jsonl', 'w') as writer:
+    writer.write_all(array)
 
 
 print(views_counter)
