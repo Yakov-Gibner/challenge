@@ -20,5 +20,5 @@ views_dict = dict(views_counter)
 array = [{'adId': i, 'views': views_dict[i]} for i in views_dict]
 
 
-with jsonlines.open('output.jsonl', 'w') as writer:
+with jsonlines.open('step2_output.jsonl', 'w') as writer:
     writer.write_all(array)
